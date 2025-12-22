@@ -50,18 +50,35 @@ const Home = () => {
             </View>
           </View>
 
-          <Text style={styles.text}>My Balance</Text>
+          <Text style={styles.texti}>My Balance</Text>
           <Text style={styles.hb}>$ 1,000.00 </Text>
-          <Text onClick={hide} style={{color: 'white', fontFamily: 'GSans', marginTop: 5, textDecorationLine: 'underline'}}>Hide Balance</Text>
+          <Text onPress={hide} style={{color: 'white', fontFamily: 'GSans', marginTop: 5, textDecorationLine: 'underline'}}>Hide Balance</Text>
 
-          <View>
-            <View></View>
+          <View style={{marginTop: 10, flexDirection: 'row',gap: 10}}>
+            <View onPress={() => router.replace('Txnlog')} style={[styles.item, {flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}]}>
+              <View style={{height: '100%', justifyContent: 'center'}}>
+                <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{padding: 2, borderRadius: 100, alignItems: 'center', justifyContent: 'center', width: 40, height: 40}}>
+                  <Image source={require('../assets/plus.png')} style={{width: 28, height: 28, resizeMode: 'contain'}} />
+                </LinearGradient>
+              </View>
+              <Text style={{color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16}}>Add Debit</Text>
+            </View>
+            
+            <View onPress={() => router.replace('Txnlog')} style={[styles.item, {flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}]}> 
+              <View style={{height: '100%', justifyContent: 'center'}}>
+                <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{padding: 2, borderRadius: 100, alignItems: 'center', justifyContent: 'center', width: 40, height: 40}}>
+                  <Image source={require('../assets/minus.png')} style={{width: 28, height: 28, resizeMode: 'contain'}} />
+                </LinearGradient>
+              </View>
+              <Text style={{color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16}}>Add Credit</Text>
+            </View>
           </View>
 
+{/*  
         <TouchableOpacity style={styles.button} onPress={logout}>
           <Text style={styles.buttonText}>LogOut</Text>
         </TouchableOpacity>
-
+ */}
     
     </LinearGradient>
   )
@@ -70,9 +87,24 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
-    nameplate: {
+  item:{
+    backgroundColor: '#4f1dab',
+    padding: 10,
+    marginVertical: 8,
+    width: 160,
+    height: 50,
+    borderRadius: 100,
+    flexDirection: 'row',
+    boxSizing: 'border-box',
+  },
+  texti:{
+    color: '#ffffff',
+    fontSize: 18,
+    fontFamily: 'GSans',
+  }, 
+  nameplate: {
       width: '100%',
-      height: 90,
+      height: 80,
       backgroundColor: '#4f1dab',
       borderRadius: 100,
       marginTop: 5,
@@ -81,13 +113,13 @@ const styles = StyleSheet.create({
     },
     nameicon:{
       borderRadius: 100,
-      width: 70,
-      height: 70,
+      width: 60,
+      height: 60,
       alignItems: 'center',      
     },
     container: {
     flex: 1,
-    backgroundColor: '#0b0615',
+    backgroundColor: '#0b0615', 
     paddingBlockStart: 10,
     paddingInline: 10,
     paddingBottom: 10,     
