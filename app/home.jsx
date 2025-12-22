@@ -1,92 +1,143 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView, Platform } from 'react-native'
-import React from 'react'
-import {Link, router} from 'expo-router'
+
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
+} from 'react-native';
+import { Link, router } from 'expo-router';
 import { auth, app } from './firebase';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 
+
 const Home = () => {
   const [fontsLoaded] = useFonts({
-      'GSans': require('../assets/font.ttf'),
-      'GSansB': require('../assets/fontb.ttf'),
-    });
-    const logout = () => {
-    auth.signOut().then(() => {
+    GSans: require('../assets/font.ttf'),
+    GSansB: require('../assets/fontb.ttf'),
+  });
+
+  const logout = () => {
+    auth
+      .signOut()
+      .then(() => {
         alert('Logged out successfully');
         router.replace('/');
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.error('Logout error:', error);
         alert('Logout failed: ' + error.message);
-    });
-}
+      });
+  };
+
   const hide = () => {
     alert('Balance hidden');
-  }
+  };
 
-                               
   return (
     <LinearGradient colors={['#3c163d', '#160c28']} style={styles.container}>
-    
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-            <Image source={require('../assets/SVIS-white.png')} style={{width: 120, height: 70, resizeMode: 'contain'}} />
-           {/* THIS IS CODE FOR A NICE ICON - BEGIN */} 
-           <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{padding: 2,borderRadius: 100,}} onClick={() => router.replace('notifications')}>
-              <View style={styles.icon}>
-                <Image source={require('../assets/ntif.png')} style={{width: 30, height: 30, resizeMode: 'contain'}} />
-              </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Image source={require('../assets/SVIS-white.png')} style={{ width: 120, height: 70, resizeMode: 'contain' }} />
+        {/* THIS IS CODE FOR A NICE ICON - BEGIN */}
+        <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{ padding: 2, borderRadius: 100 }} onClick={() => router.replace('notifications')}>
+          <View style={styles.icon}>
+            <Image source={require('../assets/ntif.png')} style={{ width: 30, height: 30, resizeMode: 'contain' }} />
+          </View>
+        </LinearGradient>
+        {/* THIS IS CODE FOR A NICE ICON - END */}
+      </View>
+      <View style={{ borderBottomColor: 'white', borderBottomWidth: 1, marginTop: 1, borderRadius: 5, marginBottom: 10 }} />
+
+      <View style={styles.nameplate}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 5, gap: 10 }}>
+          <Image source={require('../assets/TESTICON.png')} style={styles.nameicon} />
+          <View>
+            <Text style={{ color: 'white', fontSize: 15, fontWeight: 'bold', fontFamily: 'GSans' }}>Welcome Back,</Text>
+            <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', fontFamily: 'GSansB' }}>John Doe</Text>
+          </View>
+        </View>
+      </View>
+
+      <Text style={styles.texti}>My Balance</Text>
+      <Text style={styles.hb}>$ 1,000.00 </Text>
+      <Text onPress={hide} style={{ color: 'white', fontFamily: 'GSans', marginTop: 5, textDecorationLine: 'underline' }}>
+        Hide Balance
+      </Text>
+
+      <View style={{ marginTop: 10, flexDirection: 'row', gap: 10 }}>
+        <View onPress={() => router.replace('Txnlog')} style={[styles.item, { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }]}>
+          <View style={{ height: '100%', justifyContent: 'center' }}>
+            <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{ padding: 2, borderRadius: 100, alignItems: 'center', justifyContent: 'center', width: 40, height: 40 }}>
+              <Image source={require('../assets/plus.png')} style={{ width: 28, height: 28, resizeMode: 'contain' }} />
             </LinearGradient>
-           {/* THIS IS CODE FOR A NICE ICON - END */}
           </View>
-          <View style={{borderBottomColor: 'white', borderBottomWidth: 1, marginTop:1, borderRadius: 5,marginBottom: 10}}></View>
- 
-          <View style={styles.nameplate}>
-            <View style={{flexDirection: 'row', alignItems: 'center', padding: 5, gap: 10}}>
-              <Image source={require('../assets/TESTICON.png')} style={styles.nameicon} />
-              <View>
-                <Text style={{color: 'white', fontSize: 15, fontWeight: 'bold', fontFamily: 'GSans'}}>Welcome Back,</Text>
-                <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold', fontFamily: 'GSansB'}}>John Doe</Text>
-              </View>
-            </View>
+          <Text style={{ color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16 }}>Add Debit</Text>
+        </View>
+
+        <View onPress={() => router.replace('Txnlog')} style={[styles.item, { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }]}>
+          <View style={{ height: '100%', justifyContent: 'center' }}>
+            <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{ padding: 2, borderRadius: 100, alignItems: 'center', justifyContent: 'center', width: 40, height: 40 }}>
+              <Image source={require('../assets/minus.png')} style={{ width: 28, height: 28, resizeMode: 'contain' }} />
+            </LinearGradient>
           </View>
+          <Text style={{ color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16 }}>Add Credit</Text>
+        </View>
+      </View>
 
-          <Text style={styles.texti}>My Balance</Text>
-          <Text style={styles.hb}>$ 1,000.00 </Text>
-          <Text onPress={hide} style={{color: 'white', fontFamily: 'GSans', marginTop: 5, textDecorationLine: 'underline'}}>Hide Balance</Text>
-
-          <View style={{marginTop: 10, flexDirection: 'row',gap: 10}}>
-            <View onPress={() => router.replace('Txnlog')} style={[styles.item, {flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}]}>
-              <View style={{height: '100%', justifyContent: 'center'}}>
-                <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{padding: 2, borderRadius: 100, alignItems: 'center', justifyContent: 'center', width: 40, height: 40}}>
-                  <Image source={require('../assets/plus.png')} style={{width: 28, height: 28, resizeMode: 'contain'}} />
-                </LinearGradient>
-              </View>
-              <Text style={{color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16}}>Add Debit</Text>
-            </View>
-            
-            <View onPress={() => router.replace('Txnlog')} style={[styles.item, {flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}]}> 
-              <View style={{height: '100%', justifyContent: 'center'}}>
-                <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{padding: 2, borderRadius: 100, alignItems: 'center', justifyContent: 'center', width: 40, height: 40}}>
-                  <Image source={require('../assets/minus.png')} style={{width: 28, height: 28, resizeMode: 'contain'}} />
-                </LinearGradient>
-              </View>
-              <Text style={{color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16}}>Add Credit</Text>
-            </View>
-          </View>
-
-{/*  
+      <Text style={styles.texti}>Your Cards</Text>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={{ marginTop: 20, backgroundColor: '#0b0615', padding: 10,borderRadius: 6, maxHeight: 160 }}
+        contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}
+      > 
+        <View style={{ width: 200, height: 140, backgroundColor: '#4f1dab', marginRight: 10, borderRadius: 6 }} />
+        <View
+          style={{
+            width: 120,
+            height: 140,
+            backgroundColor: '#000000ff',
+            marginRight: 10,
+            borderRadius: 6,
+            borderWidth: 2,
+            borderColor: '#ddddddff',
+            borderStyle: 'dotted',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Image source={require('../assets/plus.png')} />
+          <Text style={{ color: 'white', fontFamily: 'GSans', fontSize: 10, textAlign: 'center', marginTop: 30 }}>
+            Add or Remove Cards
+          </Text>
+        </View>
+        {/* Add more items as needed */}
+      </ScrollView>
+      {/*
         <TouchableOpacity style={styles.button} onPress={logout}>
           <Text style={styles.buttonText}>LogOut</Text>
         </TouchableOpacity>
- */}
-    
+      */}
     </LinearGradient>
-  )
-}
+  );
+};
 
 export default Home
 
 const styles = StyleSheet.create({
+  cardholder:{
+    marginTop: 10,
+    width: '100%',
+    height: 10,
+    backgroundColor: '#4f1dab',
+    borderRadius: 10,
+  },
   item:{
     backgroundColor: '#4f1dab',
     padding: 10,
