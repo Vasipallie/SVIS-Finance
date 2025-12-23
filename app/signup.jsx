@@ -23,6 +23,18 @@ const signup = () => {
         const user = userCredential.user;
         console.log('Login successful:', user.email);
         alert('Signup and Login successful!');
+          const initializeWallet = async () => {
+    try {
+      const walletData = {
+        balance: 0,
+        transactions: []
+      };
+      await AsyncStorage.setItem('wallet', JSON.stringify(walletData));
+    } catch (error) {
+      console.error('Error initializing wallet data:', error);
+    }
+          };
+          initializeWallet();
         router.replace('home');
       }).catch((error) => {
         console.error('Login error after signup:', error);
@@ -145,16 +157,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#0b0615',
   },
   input: {
-    backgroundColor: '#26114dff',
-    borderColor: '#767676',
-    padding: 10,
+    backgroundColor: 'rgba(30, 20, 50, 0.95)',
+    borderColor: '#4f1dab',
+    borderWidth: 1.5,
+    padding: 12,
     fontFamily: 'GSans',
-    borderRadius:6,
-    paddingHorizontal: 10,
-    marginTop: 10,
-    color: '#ffffffff',
-    fontSize: 16,
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    marginTop: 18,
+    color: '#fff',
+    fontSize: 18,
     outlineStyle: 'none',
+    marginBottom: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.10,
+    shadowRadius: 6,
+    elevation: 2,
   },
   text: {
     color: '#ffffff',

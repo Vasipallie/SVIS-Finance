@@ -11,51 +11,112 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, router } from 'expo-router';
 import { auth, app } from '../firebase';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import react from 'react';
+import { Ionicons } from "@expo/vector-icons"
 
 const Cards = () => {
   const [fontsLoaded] = useFonts({
     GSans: require('../../assets/font.ttf'),
     GSansB: require('../../assets/fontb.ttf'),
   });
-  
+
   return (
-    <LinearGradient colors={['#3c163d', '#160c28']} style={styles.container}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    
+        <SafeAreaView style={{flex: 1, backgroundColor: '#000'}} edges={["top"]}>
+    <LinearGradient colors={['#000000ff', '#160c28']} style={styles.container}>
         <Image source={require('../../assets/SVIS-white.png')} style={{ width: 120, height: 70, resizeMode: 'contain' }} />
-        <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{ padding: 2, borderRadius: 100 }} onClick={() => router.replace('notifications')}>
-          <View style={styles.icon}>
-            <Image source={require('../../assets/ntif.png')} style={{ width: 30, height: 30, resizeMode: 'contain' }} />
-          </View>
-        </LinearGradient>
-      </View>
-      <Text style={styles.texti}>Cards</Text>
+        <View style={styles.hr}/>
+
     </LinearGradient>
+    </SafeAreaView>
   );
 };
 
 export default Cards
-
+  
 const styles = StyleSheet.create({
+  txnr:{
+    width:60,
+    backgroundColor:'#ffffff',
+    height:3,
+    alignSelf:'center',
+    marginBottom:5,
+    borderRadius:5,
+  },
+  txns:{
+    alignItems:'center',
+    flex: 1,
+    marginTop: 10,
+    backgroundColor: '#31005fff',
+    padding: 10,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  data:{
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 16,
+  },
+  stats:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 5,
+  },
+  item:{
+    backgroundColor: '#4f1dab',
+    padding: 10,
+    marginVertical: 8,
+    width: 160,
+    height: 50,
+    borderRadius: 100,
+    flexDirection: 'row',
+    boxSizing: 'border-box',
+  },
   texti:{
     color: '#ffffff',
     fontSize: 28,
-    marginTop: 20,
+    fontFamily: 'GSansB',
+  }, 
+  
+  textio:{
+    color: '#000000ff',
+    fontSize: 20,
     marginBottom: 0,
     lineHeight:0,
     fontFamily: 'GSans',
   }, 
+  nameplate: {
+      width: '100%',
+      height: 80,
+      backgroundColor: '#4f1dab',
+      borderRadius: 100,
+      marginTop: 5,
+      padding: 5,
+      marginBottom: 5,
+    },
+    nameicon:{
+      borderRadius: 100,
+      width: 60,
+      height: 60,
+      alignItems: 'center',      
+    },
     container: {
     flex: 1,
     backgroundColor: '#0b0615', 
-    paddingBlockStart: 10,
-    paddingInline: 10,
-    paddingBottom: 10,     
-  },    
+    paddingInline: 10,   
+  },
+  hr:{
+    width: '100%',
+    marginVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#ffffffff',
+    borderStyle: 'solid',
+  },
   icon:{
     borderRadius: 100,
     width: 40,
@@ -89,7 +150,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   hb: {
-    color: 'white',
+    color: 'black',
     fontFamily: 'GSansB',
     fontSize: 50,
   },

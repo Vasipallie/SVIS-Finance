@@ -1,0 +1,134 @@
+
+      <Text style={styles.text}>Your Cards Wallet</Text>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={{ marginTop: 20, backgroundColor: '#0b0615', padding: 10,borderRadius: 6, maxHeight: 160 }}
+        contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}
+      >  
+        <View style={{ width: 200, height: 140, backgroundColor: '#4f1dab', marginRight: 10, borderRadius: 6 }} />
+        <View
+          style={{
+            width: 120,
+            height: 140,
+            backgroundColor: '#000000ff',
+            marginRight: 10,
+            borderRadius: 6,
+            borderWidth: 2,
+            borderColor: '#ddddddff',
+            borderStyle: 'dotted',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Image source={require('../../assets/plus.png')} />
+          <Text style={{ color: 'white', fontFamily: 'GSans', fontSize: 10, textAlign: 'center', marginTop: 30 }}>
+            Add or Remove Cards
+          </Text>
+        </View>
+        {/* Add more items as needed */}
+      </ScrollView>
+      
+
+
+
+
+      MONEY IN
+
+      <LinearGradient colors={['#fff', '#d7ffdeff']} style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}>
+            <View style={styles.holder}>
+              <Ionicons name="cash" size={32} color="#ffffff" />
+            </View>
+            <View style={{flex: 1, minWidth: 0}}>
+              <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#222'}} numberOfLines={1} ellipsizeMode="tail">Salary</Text>
+              <Text style={{fontFamily: 'GSans', fontSize: 13, color: '#888'}} numberOfLines={1} ellipsizeMode="tail">Dec 20, 2025</Text>
+            </View>
+            <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#1a7f37', marginLeft: 8}} numberOfLines={1} ellipsizeMode="tail">+ $2,000.00</Text>
+      </LinearGradient>
+    
+    MONEY OUT   
+
+       DINING
+            <LinearGradient colors={['#fff', '#ffd8d7ff']} style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}>
+            <View style={{width: 44,height: 44,borderRadius: 6,alignItems: 'center',justifyContent: 'center',backgroundColor: '#ee1111',marginRight: 14,shadowColor: '#000',shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.10,shadowRadius: 4,elevation: 2,}}>
+              <Ionicons name="fast-food" size={32} color="#ffffff" />
+            </View>
+            <View style={{flex: 1, minWidth: 0}}>
+              <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#222'}} numberOfLines={1} ellipsizeMode="tail">Dining</Text>
+              <Text style={{fontFamily: 'GSans', fontSize: 13, color: '#888'}} numberOfLines={1} ellipsizeMode="tail">Dec 20, 2025</Text>
+            </View>
+            <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#ee1111', marginLeft: 8}} numberOfLines={1} ellipsizeMode="tail">- $2,000.00</Text>
+          </LinearGradient>
+
+       TRANSPORT
+            <LinearGradient colors={['#fff', '#ffd8d7ff']} style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}>
+            <View style={{width: 44,height: 44,borderRadius: 6,alignItems: 'center',justifyContent: 'center',backgroundColor: '#2d89ef',marginRight: 14,shadowColor: '#000',shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.10,shadowRadius: 4,elevation: 2,}}>
+              <Ionicons name="train" size={32} color="#ffffff" />
+            </View>
+            <View style={{flex: 1, minWidth: 0}}>
+              <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#222'}} numberOfLines={1} ellipsizeMode="tail">Transport</Text>
+              <Text style={{fontFamily: 'GSans', fontSize: 13, color: '#888'}} numberOfLines={1} ellipsizeMode="tail">Dec 20, 2025</Text>
+            </View>
+            <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#ee1111', marginLeft: 8}} numberOfLines={1} ellipsizeMode="tail">- $2,000.00</Text>
+          </LinearGradient>
+
+        ENTERTAIMENT
+            <LinearGradient colors={['#fff', '#ffd8d7ff']} style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}>
+            <View style={{width: 44,height: 44,borderRadius: 6,alignItems: 'center',justifyContent: 'center',backgroundColor: '#00aba9',marginRight: 14,shadowColor: '#000',shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.10,shadowRadius: 4,elevation: 2,}}>
+              <Ionicons name="film" size={32} color="#ffffff" />
+            </View>
+            <View style={{flex: 1, minWidth: 0}}>
+              <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#222'}} numberOfLines={1} ellipsizeMode="tail">Entertainment</Text>
+              <Text style={{fontFamily: 'GSans', fontSize: 13, color: '#888'}} numberOfLines={1} ellipsizeMode="tail">Dec 20, 2025</Text>
+            </View>
+            <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#ee1111', marginLeft: 8}} numberOfLines={1} ellipsizeMode="tail">- $2,000.00</Text>
+          </LinearGradient>
+
+        UTILITIES
+            <LinearGradient colors={['#fff', '#ffd8d7ff']} style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}>
+            <View style={{width: 44,height: 44,borderRadius: 6,alignItems: 'center',justifyContent: 'center',backgroundColor: '#ffc40d',marginRight: 14,shadowColor: '#000',shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.10,shadowRadius: 4,elevation: 2,}}>
+              <Ionicons name="flash" size={32} color="#ffffff" />
+            </View>
+            <View style={{flex: 1, minWidth: 0}}>
+              <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#222'}} numberOfLines={1} ellipsizeMode="tail">Utilities</Text>
+              <Text style={{fontFamily: 'GSans', fontSize: 13, color: '#888'}} numberOfLines={1} ellipsizeMode="tail">Dec 20, 2025</Text>
+            </View>
+            <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#ee1111', marginLeft: 8}} numberOfLines={1} ellipsizeMode="tail">- $2,000.00</Text>
+          </LinearGradient>
+        
+        GROCERIES
+            <LinearGradient colors={['#fff', '#ffd8d7ff']} style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}>
+            <View style={{width: 44,height: 44,borderRadius: 6,alignItems: 'center',justifyContent: 'center',backgroundColor: '#7e3878',marginRight: 14,shadowColor: '#000',shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.10,shadowRadius: 4,elevation: 2,}}>
+              <Ionicons name="cart" size={32} color="#ffffff" />
+            </View>
+            <View style={{flex: 1, minWidth: 0}}>
+              <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#222'}} numberOfLines={1} ellipsizeMode="tail">Groceries</Text>
+              <Text style={{fontFamily: 'GSans', fontSize: 13, color: '#888'}} numberOfLines={1} ellipsizeMode="tail">Dec 20, 2025</Text>
+            </View>
+            <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#ee1111', marginLeft: 8}} numberOfLines={1} ellipsizeMode="tail">- $2,000.00</Text>
+          </LinearGradient>
+        
+        SHOPPING
+            <LinearGradient colors={['#fff', '#ffd8d7ff']} style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}>
+            <View style={{width: 44,height: 44,borderRadius: 6,alignItems: 'center',justifyContent: 'center',backgroundColor: '#b91d47',marginRight: 14,shadowColor: '#000',shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.10,shadowRadius: 4,elevation: 2,}}>
+              <Ionicons name="storefront" size={32} color="#ffffff" />
+            </View>
+            <View style={{flex: 1, minWidth: 0}}>
+              <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#222'}} numberOfLines={1} ellipsizeMode="tail">Shopping</Text>
+              <Text style={{fontFamily: 'GSans', fontSize: 13, color: '#888'}} numberOfLines={1} ellipsizeMode="tail">Dec 20, 2025</Text>
+            </View>
+            <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#ee1111', marginLeft: 8}} numberOfLines={1} ellipsizeMode="tail">- $2,000.00</Text>
+          </LinearGradient>
+        
+        OTHER
+             <LinearGradient colors={['#fff', '#ffd8d7ff']} style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}>
+            <View style={{width: 44,height: 44,borderRadius: 6,alignItems: 'center',justifyContent: 'center',backgroundColor: '#ff5600',marginRight: 14,shadowColor: '#000',shadowOffset: { width: 0, height: 2 },shadowOpacity: 0.10,shadowRadius: 4,elevation: 2,}}>
+              <Ionicons name="wallet" size={32} color="#ffffff" />
+            </View>
+            <View style={{flex: 1, minWidth: 0}}>
+              <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#222'}} numberOfLines={1} ellipsizeMode="tail">Other Spending</Text>
+              <Text style={{fontFamily: 'GSans', fontSize: 13, color: '#888'}} numberOfLines={1} ellipsizeMode="tail">Dec 20, 2025</Text>
+            </View>
+            <Text style={{fontFamily: 'GSansB', fontSize: 16, color: '#ee1111', marginLeft: 8}} numberOfLines={1} ellipsizeMode="tail">- $2,000.00</Text>
+          </LinearGradient>
+

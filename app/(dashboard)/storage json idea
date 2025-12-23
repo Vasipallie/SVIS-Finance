@@ -1,7 +1,3 @@
-Make a json file with follwing data
-    
-    Recently calculated Balance
-
     {
         Balance: 200,
         Txn1:[
