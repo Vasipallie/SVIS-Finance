@@ -17,70 +17,30 @@ import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-const Home = () => {
+const Transactions = () => {
   const [fontsLoaded] = useFonts({
     GSans: require('../../assets/font.ttf'),
     GSansB: require('../../assets/fontb.ttf'),
   });
-
-  const logout = () => {
-    auth
-      .signOut()
-      .then(() => {
-        alert('Logged out successfully');
-        router.replace('/');
-      })
-      .catch((error) => {
-        console.error('Logout error:', error);
-        alert('Logout failed: ' + error.message);
-      });
-  };
-
-  const hide = () => {
-    alert('Balance hidden');
-  };
-
+  
   return (
     <LinearGradient colors={['#3c163d', '#160c28']} style={styles.container}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
         <Image source={require('../../assets/SVIS-white.png')} style={{ width: 120, height: 70, resizeMode: 'contain' }} />
-        {/* THIS IS CODE FOR A NICE ICON - BEGIN */}
         <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{ padding: 2, borderRadius: 100 }} onClick={() => router.replace('notifications')}>
           <View style={styles.icon}>
             <Image source={require('../../assets/ntif.png')} style={{ width: 30, height: 30, resizeMode: 'contain' }} />
           </View>
         </LinearGradient>
-        {/* THIS IS CODE FOR A NICE ICON - END */}
       </View>
       <Text style={styles.texti}>Transactions</Text>
-      {/*
-        <TouchableOpacity style={styles.button} onPress={logout}>
-          <Text style={styles.buttonText}>LogOut</Text>
-        </TouchableOpacity>
-      */}
     </LinearGradient>
   );
 };
 
-export default Home
+export default Transactions
 
 const styles = StyleSheet.create({
-  cardholder:{
-    width: '100%',
-    height: 10,
-    backgroundColor: '#4f1dab',
-    borderRadius: 10,
-  },
-  item:{
-    backgroundColor: '#4f1dab',
-    padding: 10,
-    marginVertical: 8,
-    width: 160,
-    height: 50,
-    borderRadius: 100,
-    flexDirection: 'row',
-    boxSizing: 'border-box',
-  },
   texti:{
     color: '#ffffff',
     fontSize: 28,
@@ -88,22 +48,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     lineHeight:0,
     fontFamily: 'GSans',
-  }, 
-  nameplate: {
-      width: '100%',
-      height: 80,
-      backgroundColor: '#4f1dab',
-      borderRadius: 100,
-      marginTop: 5,
-      padding: 5,
-      marginBottom: 5,
-    },
-    nameicon:{
-      borderRadius: 100,
-      width: 60,
-      height: 60,
-      alignItems: 'center',      
-    },
+  },
     container: {
     flex: 1,
     backgroundColor: '#0b0615', 

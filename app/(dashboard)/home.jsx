@@ -15,6 +15,7 @@ import { Link, router } from 'expo-router';
 import { auth, app } from '../firebase';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
+import react from 'react';
 
 
 const Home = () => {
@@ -22,40 +23,35 @@ const Home = () => {
     GSans: require('../../assets/font.ttf'),
     GSansB: require('../../assets/fontb.ttf'),
   });
-
-  const logout = () => {
-    auth
-      .signOut()
-      .then(() => {
-        alert('Logged out successfully');
-        router.replace('/');
-      })
-      .catch((error) => {
-        console.error('Logout error:', error);
-        alert('Logout failed: ' + error.message);
-      });
-  };
-
+/* WE NEED TO ADD LOGIC TO GET BALANCE */
+  const [balance, setBalance] = react.useState('$ 5,000.00');
+  const balancetop = react.useState('$ 5,000.00')[0];
   const hide = () => {
-    alert('Balance hidden');
-  };
-
+    //toggle balance visibility
+    if (balance != '$ ****.**') {
+      setBalance('$ ****.**');
+    } else{
+      setBalance(balancetop);
+    }
+    
+  }
+  
   return (
     <LinearGradient colors={['#3c163d', '#160c28']} style={styles.container}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
         <Image source={require('../../assets/SVIS-white.png')} style={{ width: 120, height: 70, resizeMode: 'contain' }} />
-        {/* THIS IS CODE FOR A NICE ICON - BEGIN */}
+        <Link href="/(dashboard)/notifs">
         <LinearGradient colors={['#a0a0a0ff', '#333399']} style={{ padding: 2, borderRadius: 100 }} onClick={() => router.replace('notifications')}>
           <View style={styles.icon}>
             <Image source={require('../../assets/ntif.png')} style={{ width: 30, height: 30, resizeMode: 'contain' }} />
           </View>
         </LinearGradient>
-        {/* THIS IS CODE FOR A NICE ICON - END */}
+        </Link>
       </View>
       <View style={{ borderBottomColor: 'white', borderBottomWidth: 1, marginTop: 1, borderRadius: 5, marginBottom: 10 }} />
 
       <Text style={styles.texti}>My Balance</Text>
-      <Text style={styles.hb}>$ 1,000.00 </Text>
+      <Text style={styles.hb} >{balance}</Text>
       <Text onPress={hide} style={{ color: 'white', fontFamily: 'GSans', marginTop: 5, textDecorationLine: 'underline' }}>
         Hide Balance
       </Text>
@@ -96,7 +92,7 @@ const Home = () => {
               <Image source={require('../../assets/plus.png')} style={{ width: 28, height: 28, resizeMode: 'contain' }} />
             </LinearGradient>
           </View>
-          <Text style={{ color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16 }}>Add Debit</Text>
+          <Text style={{ color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16 }}>Money In</Text>
         </View>
 
         <View onPress={() => router.replace('Txnlog')} style={[styles.item, { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }]}>
@@ -105,14 +101,9 @@ const Home = () => {
               <Image source={require('../../assets/minus.png')} style={{ width: 28, height: 28, resizeMode: 'contain' }} />
             </LinearGradient>
           </View>
-          <Text style={{ color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16 }}>Add Credit</Text>
+          <Text style={{ color: 'white', fontFamily: 'GSans', fontSize: 16, marginLeft: 16 }}>Money Out</Text>
         </View>
       </View>
-      {/*
-        <TouchableOpacity style={styles.button} onPress={logout}>
-          <Text style={styles.buttonText}>LogOut</Text>
-        </TouchableOpacity>
-      */}
     </LinearGradient>
   );
 };

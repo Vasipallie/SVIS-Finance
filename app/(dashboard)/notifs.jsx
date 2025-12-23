@@ -17,24 +17,11 @@ import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-const Settings = () => {
+const Notifications = () => {
   const [fontsLoaded] = useFonts({
     GSans: require('../../assets/font.ttf'),
     GSansB: require('../../assets/fontb.ttf'),
   });
-
-  const logout = () => {
-    auth
-      .signOut()
-      .then(() => {
-        alert('Logged out successfully');
-        router.replace('/');
-      })
-      .catch((error) => {
-        console.error('Logout error:', error);
-        alert('Logout failed: ' + error.message);
-      });
-  };
 
   return (
     <LinearGradient colors={['#3c163d', '#160c28']} style={styles.container}>
@@ -46,18 +33,12 @@ const Settings = () => {
           </View>
         </LinearGradient>
       </View>
-      <Text style={styles.texti}>Settings</Text>
-      
-        <TouchableOpacity style={styles.button} onPress={logout}>
-          <Text style={styles.buttonText}>LogOut</Text>
-        </TouchableOpacity>
-    
-      
+      <Text style={styles.texti}>Notifications</Text>
     </LinearGradient>
   );
 };
 
-export default Settings
+export default Notifications
 
 const styles = StyleSheet.create({
   texti:{
@@ -67,33 +48,13 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     lineHeight:0,
     fontFamily: 'GSans',
-  },
+  }, 
     container: {
     flex: 1,
     backgroundColor: '#0b0615', 
     paddingBlockStart: 10,
     paddingInline: 10,
     paddingBottom: 10,     
-  },    
-  icon:{
-    borderRadius: 100,
-    width: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 40,
-    backgroundColor: '#4f1dab',
-  },
-  input: {
-    backgroundColor: '#ffffff',
-    borderColor: '#767676',     
-    padding: 10,
-    fontFamily: 'GSans',
-    borderRadius:6,
-    paddingHorizontal: 10,
-    marginTop: 15,
-    color: '#000000',
-    fontSize: 16,
-    outlineStyle: 'none',
   },
   text: {
     color: '#ffffff',
