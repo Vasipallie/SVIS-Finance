@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useIsFocused } from '@react-navigation/native';
 import {
   StyleSheet,
   Text,
@@ -37,9 +38,12 @@ const Home = () => {
   const balance = wallet && typeof wallet.balance === 'number' ? `$ ${wallet.balance.toLocaleString()}` : '$ 0.00';
   const income = wallet && typeof wallet.income === 'number' ? `$ ${wallet.income.toLocaleString()}` : '$ 0.00';
   const expenditure = wallet && typeof wallet.expenditure === 'number' ? `$ ${wallet.expenditure.toLocaleString()}` : '$ 0.00';
-  React.useEffect(() => { 
-    initializeWallet();
-  }, []);
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    if (isFocused) {
+      initializeWallet();
+    }
+  }, [isFocused]);
 const tagMap = {
     transport: { icon: 'train', color: '#2d89ef', label: 'Transport' },
     food: { icon: 'fast-food', color: '#ee1111', label: 'Dining' },

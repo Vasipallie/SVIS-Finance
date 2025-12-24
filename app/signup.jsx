@@ -78,11 +78,6 @@ const signup = () => {
             <Image source={require('../assets/SVIS-white.png')} style={styles.img} />
             <View style={{borderBottomColor: 'white', borderBottomWidth: 1, marginTop:1}}></View>
             <Text style={styles.h1}>Signup</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Full Name"
-              placeholderTextColor="#999"
-            />
 
             <TextInput
               style={styles.input}
@@ -103,7 +98,7 @@ const signup = () => {
               secureTextEntry
               autoCapitalize="none"
             />
-            <Text style={styles.tes}>By clicking "Signup", you agree to our <Link href="/terms" style={styles.a}>Terms of Service</Link> and <Link href="/privacy" style={styles.a}>Privacy Policy</Link>.</Text>
+            <Text style={styles.tes}>By clicking "Signup", you agree to our <Link href="/privtos" style={styles.a}>Terms of Service</Link> and <Link href="/privtos" style={styles.a}>Privacy Policy</Link>.</Text>
             <TouchableOpacity style={styles.button} onPress={create}>
               <Text style={styles.buttonText}>Signup</Text>
             </TouchableOpacity>

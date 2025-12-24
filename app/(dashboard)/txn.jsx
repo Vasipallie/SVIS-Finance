@@ -8,6 +8,7 @@ import react from 'react';
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useIsFocused } from '@react-navigation/native';
 
 const Transactions = () => {
   const [fontsLoaded] = useFonts({
@@ -30,9 +31,12 @@ const Transactions = () => {
     setRefreshing(true);
     initializeWallet().then(() => setRefreshing(false));
   }, []);   
+  const isFocused = useIsFocused();
   useEffect(() => {
-    initializeWallet();
-  }, []);
+    if (isFocused) {
+      initializeWallet();
+    }
+  }, [isFocused]);
   const tagMap = {
     transport: { icon: 'train', color: '#2d89ef', label: 'Transport' },
     food: { icon: 'fast-food', color: '#ee1111', label: 'Dining' },
