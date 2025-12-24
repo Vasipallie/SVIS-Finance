@@ -13,7 +13,7 @@ const Dashlayout = () => {
     }}
     >
       <Tabs.Screen name="home" options={{ title: 'Home', tabBarLabel: 'Home', tabBarIcon: ({ focused}) => <Ionicons name={focused ? "home" : "home-outline"} size={24} color={focused ? '#ff5800' : '#888888'} /> }} />
-      <Tabs.Screen name="cards" options={{ title: 'Cards', tabBarLabel: 'Cards', tabBarIcon: ({ focused}) => <Ionicons name={focused ? "card" : "card-outline"} size={24} color={focused ? '#ff5800' : '#888888'} />  }} />
+      {/* <Tabs.Screen name="cards" options={{ title: 'Cards', tabBarLabel: 'Cards', tabBarIcon: ({ focused}) => <Ionicons name={focused ? "card" : "card-outline"} size={24} color={focused ? '#ff5800' : '#888888'} />  }} /> */}
       <Tabs.Screen name="txn" options={{ title: 'Transactions', tabBarLabel: 'Transactions', tabBarIcon: ({ focused}) => <Ionicons name={focused ? "list" : "list-outline"} size={24} color={focused ? '#ff5800' : '#888888'} /> }} />
       <Tabs.Screen name="txnadd" options={{ title: 'Add Transaction', tabBarLabel: 'Add Txn', tabBarIcon: ({ focused}) => <Ionicons name={focused ? "add-circle" : "add-circle-outline"} size={24} color={focused ? '#ff5800' : '#888888'} />  }} />
       <Tabs.Screen name="settings" options={{ title: 'Settings', tabBarLabel: 'Settings', tabBarIcon: ({ focused}) => <Ionicons name={focused ? "settings" : "settings-outline"} size={24} color={focused ? '#ff5800' : '#888888'} />  }} />
