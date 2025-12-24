@@ -2,7 +2,7 @@
   "expo": {
     "scheme": "SVISFinance",
     "name": "SVIS-Finance",
-    "slug": "SVIS-Finance",
+    "slug": "svis-finance",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/SVIS-app.png",
@@ -14,7 +14,11 @@
       "backgroundColor": "#160c28"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.SVIS.SVISFinance",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -31,6 +35,12 @@
       "expo-router",
       "expo-font"
     ],
-    "extra": {}
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d4c9b9b8-61cb-4f26-b72c-55aa47f937a9"
+      }
+    },
+    "owner": "svis-finance"
   }
 }
