@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/SVIS-app.png",
         "backgroundColor": "#160c28"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.SVIS.SVISFinance"
     },
     "web": {
       "favicon": "./assets/SVIS-app.png"
