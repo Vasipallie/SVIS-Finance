@@ -5,6 +5,7 @@ import {Link, router} from 'expo-router'
 import { useFonts } from 'expo-font';
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, app } from './firebase';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Index = () => {
   const [fontsLoaded] = useFonts({
@@ -36,10 +37,36 @@ const Index = () => {
       return;
     }
     if (email.includes('@') && password.length >= 6) {
-      //Lets authenticate with Firebase
       signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
         const user = userCredential.user;
         console.log('Login successful:', user.email);
+        const initializeWallet = async () => {
+          try {
+            const storedDate = await AsyncStorage.getItem('wallet');
+            const walletParsed = storedDate ? JSON.parse(StoredDate): null; 
+            let income = 0;
+            let expenditure = 0;
+            const currentMonth = new Date().getMonth();
+            walletParsed.transactions.forEach((txn) => {
+              const txnDate = new Date(txn.date);
+              if (txnDate.getMonth() === currentMonth) {
+                if (txn.txn === 1) {
+                  income += txn.money;
+                } else if (txn.txn === 0) {
+                  expenditure += txn.money;
+                }
+              }
+            });
+            walletParsed.income = income;
+            walletParsed.expenditure = expenditure;
+            await AsyncStorage.setItem('wallet', JSON.stringify(walletParsed));
+          } catch (error) {
+            console.error('Error calculating income and expenditure:', error);
+          }
+        };
+        initializeWallet();
+
+
         alert('Login successful!');
         router.replace('home');
       }).catch((error) => {

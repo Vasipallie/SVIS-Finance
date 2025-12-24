@@ -10,16 +10,18 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
-import { Link, router } from 'expo-router';
-import { auth, app } from '../firebase';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
-import react from 'react';
 import { Ionicons } from "@expo/vector-icons"
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = () => {
+  
+    const [fontsLoaded] = useFonts({
+      GSans: require('../../assets/font.ttf'),
+      GSansB: require('../../assets/fontb.ttf'),
+    });
   const [toggled, setToggled] = React.useState(false);
     const [wallet, setWallet] = useState(null);
 
@@ -32,9 +34,10 @@ const Home = () => {
       console.error('Error with AsyncStorage:', error);
     }
   };
-  const balance = wallet ? `$ ${wallet.balance.toLocaleString()}` : '$ 0.00';
-
-  React.useEffect(() => {
+  const balance = wallet && typeof wallet.balance === 'number' ? `$ ${wallet.balance.toLocaleString()}` : '$ 0.00';
+  const income = wallet && typeof wallet.income === 'number' ? `$ ${wallet.income.toLocaleString()}` : '$ 0.00';
+  const expenditure = wallet && typeof wallet.expenditure === 'number' ? `$ ${wallet.expenditure.toLocaleString()}` : '$ 0.00';
+  React.useEffect(() => { 
     initializeWallet();
   }, []);
 const tagMap = {
@@ -53,12 +56,12 @@ const tagMap = {
     transactionCards = wallet.transactions.slice().reverse().slice(0, 4).map((txn, idx) => {
       const tagInfo = tagMap[txn.tags] || tagMap.other;
       const isIn = txn.txn === 1;
-      const amount = typeof txn.money === 'number' && !isNaN(txn.money) ? txn.money.toLocaleString() : 'ERROR';
+      const amount = txn && typeof txn.money === 'number' && !isNaN(txn.money) ? txn.money.toLocaleString() : 'ERROR';
       return (
         <LinearGradient
           key={idx}
           colors={isIn ? ['#fff', '#d7ffdeff'] : ['#fff', '#ffd8d7ff']}
-          style={{borderRadius: 14, padding: 16, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}
+          style={{borderRadius: 14, padding: 12, marginBottom: 10, flexDirection: 'row', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 3}}
         >
           <View style={{width: 44, height: 44, borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: tagInfo.color, marginRight: 14, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.10, shadowRadius: 4, elevation: 2}}>
             <Ionicons name={tagInfo.icon} size={32} color="#ffffff" />
@@ -94,19 +97,18 @@ const tagMap = {
           <View style={styles.stats}>
             <View style={{alignItems: 'center', flex: 1, marginRight: 8, backgroundColor: '#c7ffddff', borderRadius: 12, padding: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.08, shadowRadius: 6, elevation: 2 }}>
               <Text style={{ color: '#1a7f37', fontFamily: 'GSans', fontSize: 16 }}>Income</Text>
-              <Text style={{ color: '#1a7f37', fontFamily: 'GSans', fontSize: 26, marginTop: 1, fontWeight: 'bold' }}>$ 3,500.00</Text>
+              <Text style={{ color: '#1a7f37', fontFamily: 'GSans', fontSize: 26, marginTop: 1, fontWeight: 'bold' }}>{income}</Text>
             </View>
             <View style={{alignItems: 'center', flex: 1, marginLeft: 8, backgroundColor: '#ffd0d0ff', borderRadius: 12, padding: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.08, shadowRadius: 6, elevation: 2 }}>
               <Text style={{ color: '#c0392b', fontFamily: 'GSans', fontSize: 16 }}>Expenditure</Text>
-              <Text style={{ color: '#c0392b', fontFamily: 'GSans', fontSize: 26, marginTop: 1, fontWeight: 'bold' }}>$ 12,500.00</Text>
+              <Text style={{ color: '#c0392b', fontFamily: 'GSans', fontSize: 26, marginTop: 1, fontWeight: 'bold' }}>{expenditure}</Text>
             </View>
           </View>
         </LinearGradient>
         <View style={styles.txns}>
-          <View style={styles.txnr} />
           <Text style={[styles.texti, {alignSelf: 'center', flexWrap: 'wrap', width: '100%'}]}>Recent Transactions</Text>
           <View style={{width: '100%', marginTop: 12}}>
-           <ScrollView style={{marginTop: 20}}>
+           <ScrollView style={{marginTop:0 }}>
                    {transactionCards}
           </ScrollView>
           </View>

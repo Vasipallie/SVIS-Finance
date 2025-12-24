@@ -42,4 +42,8 @@ yarn-error.*
 
 # Server env
 /server/.env
-/app.json
+/app.
+
+
+# TEMPORARY IGNORE FILES FOR SHIP 1
+/app/%28dashboard%29/home.jsx

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import {
+  Alert,
   StyleSheet,
   Text,
   View,
@@ -18,6 +19,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import react from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as FileSystem from 'expo-file-system';
+import { File, Paths } from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
 
 const Settings = () => {
   const [fontsLoaded] = useFonts({
@@ -37,15 +42,67 @@ const Settings = () => {
         alert('Logout failed: ' + error.message);
       });
   };
-
-  
-  
-  return (
+  const clearData = async () => {
+    Alert.alert(
+      'Confirm Data Clear',
+      'Are you sure you want to clear all your data? This action cannot be undone.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Clear Data',
+          onPress: async () => {
+            try {
+              await AsyncStorage.removeItem('wallet');
+              const walletData = {
+                balance: 0.00,
+                income: 0.00,
+                expenditure: 0.00,
+                transactions: []
+              };
+              await AsyncStorage.setItem('wallet', JSON.stringify(walletData));
+              alert('Data cleared successfully');
+            
+            } catch (error) {
+              alert('Failed to clear data: ' + error.message);
+            }
+          },
+        }
+      ]
+    );
+  }
+  const exportData = async () => {
+    try {
+      const storedData = await AsyncStorage.getItem('wallet');
+      if (storedData) {
+        const file = new File(Paths.document, 'wallet_data.json');
+        await file.write(storedData);
+        await Sharing.shareAsync(file.uri);
+      } else {
+        alert('No data to export');
+      }
+    } catch (error) {
+      alert('Failed to export data: ' + error.message);
+    }
+  };
+  return ( 
     
         <SafeAreaView style={{flex: 1, backgroundColor: '#000'}} edges={["top"]}>
     <LinearGradient colors={['#000000ff', '#160c28']} style={styles.container}>
         <Image source={require('../../assets/SVIS-white.png')} style={{ width: 120, height: 70, resizeMode: 'contain' }} />
         <View style={styles.hr}/>
+
+        <TouchableOpacity style={styles.button} onPress={clearData}>
+          <Text style={styles.buttonText}>Clear Data</Text>
+        </TouchableOpacity>
+
+        
+        <TouchableOpacity style={styles.button} onPress={exportData}>
+          <Text style={styles.buttonText}>Export Data</Text>
+        </TouchableOpacity>
+    
 
         <TouchableOpacity style={styles.button} onPress={logout}>
           <Text style={styles.buttonText}>LogOut</Text>
@@ -59,14 +116,6 @@ const Settings = () => {
 export default Settings
 
 const styles = StyleSheet.create({
-  txnr:{
-    width:60,
-    backgroundColor:'#ffffff',
-    height:3,
-    alignSelf:'center',
-    marginBottom:5,
-    borderRadius:5,
-  },
   hr:{
     width: '100%',
     marginVertical: 10,
@@ -74,41 +123,11 @@ const styles = StyleSheet.create({
     borderTopColor: '#ffffffff',
     borderStyle: 'solid',
   },
-  txns:{
-    alignItems:'center',
-    flex: 1,
-    marginTop: 10,
-    backgroundColor: '#31005fff',
-    padding: 10,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  data:{
-    backgroundColor: '#fff',
-    padding: 10,
-    borderRadius: 16,
-  },
-  stats:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 5,
-  },
-  item:{
-    backgroundColor: '#4f1dab',
-    padding: 10,
-    marginVertical: 8,
-    width: 160,
-    height: 50,
-    borderRadius: 100,
-    flexDirection: 'row',
-    boxSizing: 'border-box',
-  },
   texti:{
     color: '#ffffff',
     fontSize: 28,
     fontFamily: 'GSansB',
   }, 
-  
   textio:{
     color: '#000000ff',
     fontSize: 20,
@@ -116,34 +135,6 @@ const styles = StyleSheet.create({
     lineHeight:0,
     fontFamily: 'GSans',
   }, 
-  nameplate: {
-      width: '100%',
-      height: 80,
-      backgroundColor: '#4f1dab',
-      borderRadius: 100,
-      marginTop: 5,
-      padding: 5,
-      marginBottom: 5,
-    },
-    nameicon:{
-      borderRadius: 100,
-      width: 60,
-      height: 60,
-      alignItems: 'center',      
-    },
-    container: {
-    flex: 1,
-    backgroundColor: '#0b0615',
-    paddingInline: 10,   
-  },    
-  icon:{
-    borderRadius: 100,
-    width: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 40,
-    backgroundColor: '#4f1dab',
-  },
   input: {
     backgroundColor: '#ffffff',
     borderColor: '#767676',     
